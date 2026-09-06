@@ -134,7 +134,7 @@
 
             if (urlParams.get('rom')) {
                 console.log(`Loading ROM from URL: roms/${urlParams.get('rom')}`);
-                run(false, urlParams.get('rom'));
+                run(false, "rojo.gbc");
             }
 
             async function run(upload, file) {
