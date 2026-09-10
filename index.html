@@ -26,25 +26,46 @@
         window.EJS_gameName = "Pokemon Rojo";
         window.EJS_pathtodata = "data/";
         window.EJS_startOnLoaded = true;
-       window.EJS_Buttons = {
-        playPause: false,
-        restart: false,
-        mute: false,
-        settings: true,      // ← este es el botón que abre el menú contextual
-        fullscreen: false,
-        saveState: false,
-        loadState: false,
-        screenRecord: false,
-        gamepad: false,
-        cheat: false,
-        volume: false,
-        saveSavFiles: false,
-        loadSavFiles: false,
-        quickSave: false,
-        quickLoad: false,
-        screenshot: false,
-        cacheManager: false,
-        exitEmulation: false
-    };
-</script>
-<script src="data/loader.js"></script>
+        window.EJS_Buttons = {
+            playPause: false,
+            restart: false,
+            mute: false,
+            settings: true,
+            fullscreen: false,
+            saveState: false,
+            loadState: false,
+            screenRecord: false,
+            gamepad: false,
+            cheat: false,
+            volume: false,
+            saveSavFiles: false,
+            loadSavFiles: false,
+            quickSave: false,
+            quickLoad: false,
+            screenshot: false,
+            cacheManager: false,
+            exitEmulation: false
+        };
+
+        // Forzar el arranque tras cargar el loader
+        window.addEventListener('load', function() {
+            // Simular un toque en el documento para desbloquear el AudioContext
+            var event = new TouchEvent('touchstart', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            document.dispatchEvent(event);
+
+            // Si aún así no arranca, forzar el clic en el canvas tras 1 segundo
+            setTimeout(function() {
+                var canvas = document.querySelector('canvas');
+                if (canvas) {
+                    canvas.click();
+                }
+            }, 1000);
+        });
+    </script>
+    <script src="data/loader.js"></script>
+</body>
+</html>
